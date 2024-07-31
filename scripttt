@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ssh -i "/home/shadow9/Downloads/my-keypair.pem" ubuntu@ec2-54-172-230-230.compu>
+  mv  /var/www/wordpress/wp-config.php /home/ubuntu/data
+  cp -r /var/www/wordpress/* /home/ubuntu/shadow
+  cd /home/ubuntu/shadow
+  git init
+  git add .
+  git commit -m "new commit without credentials 1"
+  git remote add origin git@github.com:shadowsince1999/bash-wordpress.git
+  git push -u origin master
+  sudo rm -rf *
+#
+  cd /home/ubuntu/shadow
+  git clone git@github.com:shadowsince1999/bash-wordpress.git
+  sudo rm -rf /var/www/wordpress/*
+  mv /home/ubuntu/data/wp-config.php /var/www/wordpress/
+  mv bash-wordpress/* /var/www/wordpress/
+  rm -rf bash-wordpress
